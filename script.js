@@ -15,10 +15,14 @@ let padding = 40
 
 let svg = d3.select('svg')
 
+//Draw Canvas
+
 let drawCanvas = () => {
     svg.attr('width', width)
     svg.attr('height', height)
 }
+
+//Generate Scales for the canvas
 
 let generateScales = () => {
 
@@ -36,6 +40,8 @@ let generateScales = () => {
         return new Date(item[0])
     })
 
+//Scale the Axes for the bars
+
     xAxisScale = d3.scaleTime()
                     .domain([d3.min(datesArray), d3.max(datesArray)])
                     .range([padding, width-padding])
@@ -46,6 +52,8 @@ let generateScales = () => {
                     })])
                     .range([height - padding, padding ])
 }
+
+//Draw Bars
 
 let drawBars =() => {
 
@@ -91,6 +99,8 @@ let drawBars =() => {
         })        
 }
 
+//Generate axes
+
 let generateAxes = () => {
 
     let xAxis = d3.axisBottom(xAxisScale)
@@ -107,6 +117,8 @@ let generateAxes = () => {
         .attr('transform', 'translate(' + padding + ', 0)')
         
 }
+
+//Request the data from url
 
 req.open('GET', url, true)
 req.onload = () => {
